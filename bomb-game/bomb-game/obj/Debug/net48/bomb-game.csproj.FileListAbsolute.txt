@@ -1,0 +1,14 @@
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.csproj.AssemblyReference.cache
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\App.g.cs
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game_MarkupCompile.cache
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\Window1.baml
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\Window1.g.cs
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.g.resources
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.sourcelink.json
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\bin\Debug\net48\bomb-game.exe.config
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\bin\Debug\net48\bomb-game.exe
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\bin\Debug\net48\bomb-game.pdb
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.exe
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\net48\bomb-game.pdb

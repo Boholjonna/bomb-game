@@ -74,5 +74,9 @@
   <ItemGroup>
     <Page Include="Window1.xaml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\home.gif" />
+    <Resource Include="images\explode.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
