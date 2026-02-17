@@ -1,0 +1,10 @@
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\bin\Debug\bomb-game.exe
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\bin\Debug\bomb-game.pdb
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\bomb-game.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\Window1.baml
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\Window1.g.cs
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\App.g.cs
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\bomb-game_MarkupCompile.cache
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\bomb-game.g.resources
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\bomb-game.exe
+C:\Users\ASUS\OneDrive\Documents\SharpDevelop Projects\PRELIM\bomb-game\bomb-game\bomb-game\obj\Debug\bomb-game.pdb
