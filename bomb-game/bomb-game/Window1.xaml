@@ -4,6 +4,188 @@
 	Title="DIFFUSE THE BOMB BY Jonna Bohol"
 	Width="1026"
 	Height="710.5">
+	<Window.Resources>
+		<!-- Main Menu Button Style -->
+		<Style x:Key="MainMenuButtonStyle" TargetType="Button">
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="30"/>
+			<Setter Property="Foreground" Value="#FFFFFFFF"/>
+			<Setter Property="Background" Value="#FFF30000"/>
+			<Setter Property="BorderThickness" Value="8,8,8,8"/>
+			<Setter Property="BorderBrush" Value="#FFFFFFFF"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FFCC0000"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FFCCCCCC"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<!-- Wire Button Styles -->
+		<Style x:Key="RedWireStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FFFF0000"/>
+			<Setter Property="BorderBrush" Value="#FF8B0000"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FFCC0000"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FF660000"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<Style x:Key="GreenWireStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FF00FF00"/>
+			<Setter Property="BorderBrush" Value="#FF006400"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FF00CC00"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FF004400"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<Style x:Key="BlueWireStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FF0000FF"/>
+			<Setter Property="BorderBrush" Value="#FF000080"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FF0000CC"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FF000060"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<Style x:Key="YellowWireStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FFFFFF00"/>
+			<Setter Property="BorderBrush" Value="#FF808000"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FFCCCC00"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FF606000"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<Style x:Key="PurpleWireStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FFFF00FF"/>
+			<Setter Property="BorderBrush" Value="#FF800080"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FFCC00CC"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FF600060"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		
+		<!-- Back Button Style -->
+		<Style x:Key="BackButtonStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FF333333"/>
+			<Setter Property="BorderBrush" Value="#FF666666"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="5">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#FF222222"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FF555555"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
 	<Grid>
 		<Grid.Background>
 			<ImageBrush
@@ -56,7 +238,8 @@
 				BorderThickness="8,8,8,8"
 				BorderBrush="#FFFFFFFF"
 				x:Name="play_button"
-				Click="play_button_Click" />
+				Click="play_button_Click"
+				Style="{StaticResource MainMenuButtonStyle}" />
 			<Button
 				FontWeight="Bold"
 				FontSize="30"
@@ -73,7 +256,8 @@
 				Width="228"
 				Height="71.5"
 				Content="ABOUT"
-				Click="about_button_Click" />
+				Click="about_button_Click"
+				Style="{StaticResource MainMenuButtonStyle}" />
 			<Button
 				FontWeight="Bold"
 				FontSize="30"
@@ -84,6 +268,7 @@
 				x:Name="help_button"
 				Content="HELP"
 				Click="help_button_Click"
+				Style="{StaticResource MainMenuButtonStyle}"
 				Grid.Column="1"
 				Grid.ColumnSpan="2"
 				Grid.Row="0"
@@ -109,7 +294,8 @@
 				Width="228"
 				Height="71.5"
 				Click="settings_button_Click"
-				Content="SETTINGS" />
+				Content="SETTINGS"
+				Style="{StaticResource MainMenuButtonStyle}" />
 		</Grid>
 		<!-- Play Panel -->
 		<Grid
@@ -171,58 +357,33 @@
 					<Button
 						x:Name="Wire1"
 						Grid.Column="0"
-						Background="#FFFF0000"
-						Height="200"
-						Margin="10"
 						Content="RED"
-						FontSize="16"
-						FontWeight="Bold"
-						Foreground="White"
-						Click="Wire_Click" />
+						Click="Wire_Click"
+						Style="{StaticResource RedWireStyle}" />
 					<Button
 						x:Name="Wire2"
 						Grid.Column="1"
-						Background="#FF00FF00"
-						Height="200"
-						Margin="10"
 						Content="GREEN"
-						FontSize="16"
-						FontWeight="Bold"
-						Foreground="White"
-						Click="Wire_Click" />
+						Click="Wire_Click"
+						Style="{StaticResource GreenWireStyle}" />
 					<Button
 						x:Name="Wire3"
 						Grid.Column="2"
-						Background="#FF0000FF"
-						Height="200"
-						Margin="10"
 						Content="BLUE"
-						FontSize="16"
-						FontWeight="Bold"
-						Foreground="White"
-						Click="Wire_Click" />
+						Click="Wire_Click"
+						Style="{StaticResource BlueWireStyle}" />
 					<Button
 						x:Name="Wire4"
 						Grid.Column="3"
-						Background="#FFFFFF00"
-						Height="200"
-						Margin="10"
 						Content="YELLOW"
-						FontSize="16"
-						FontWeight="Bold"
-						Foreground="Black"
-						Click="Wire_Click" />
+						Click="Wire_Click"
+						Style="{StaticResource YellowWireStyle}" />
 					<Button
 						x:Name="Wire5"
 						Grid.Column="4"
-						Background="#FFFF00FF"
-						Height="200"
-						Margin="10"
 						Content="PURPLE"
-						FontSize="16"
-						FontWeight="Bold"
-						Foreground="White"
-						Click="Wire_Click" />
+						Click="Wire_Click"
+						Style="{StaticResource PurpleWireStyle}" />
 				</Grid>
 				<Button
 					x:Name="BackToMenuFromPlay"
@@ -233,7 +394,8 @@
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
-					Click="BackToMenu_Click" />
+					Click="BackToMenu_Click"
+				Style="{StaticResource BackButtonStyle}" />
 			</StackPanel>
 		</Grid>
 		<!-- Settings Panel -->
@@ -316,7 +478,8 @@
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
-					Click="BackToMenu_Click" />
+					Click="BackToMenu_Click"
+				Style="{StaticResource BackButtonStyle}" />
 			</StackPanel>
 		</Grid>
 		<!-- Help Panel -->
@@ -412,7 +575,8 @@
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
-					Click="BackToMenu_Click" />
+					Click="BackToMenu_Click"
+				Style="{StaticResource BackButtonStyle}" />
 			</StackPanel>
 		</Grid>
 		<!-- About Panel -->
@@ -517,7 +681,8 @@
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
-					Click="BackToMenu_Click" />
+					Click="BackToMenu_Click"
+				Style="{StaticResource BackButtonStyle}" />
 			</StackPanel>
 		</Grid>
 	</Grid>
