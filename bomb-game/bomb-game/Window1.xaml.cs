@@ -15,6 +15,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace bomb_game
 {
@@ -74,6 +75,9 @@ namespace bomb_game
 			
 			if (wireIndex == -1) return;
 			
+			// Play wire pulse animation on each click
+			PlayWirePulseAnimation();
+			
 			if (wireIndex == bombWireIndex)
 			{
 				// Correct wire - bomb defused!
@@ -81,6 +85,7 @@ namespace bomb_game
 				StatusText.Foreground = new SolidColorBrush(Colors.Lime);
 				gameActive = false;
 				DisableAllWires();
+				PlaySuccessAnimation();
 			}
 			else
 			{
@@ -104,13 +109,89 @@ namespace bomb_game
 					gameActive = false;
 					DisableAllWires();
 					RevealBombWire();
+					PlayExplosionAnimation();
 				}
 				else
 				{
 					StatusText.Text = "❌ Wrong wire! The bomb wire has moved! Try again!";
 					StatusText.Foreground = new SolidColorBrush(Colors.Orange);
+					// Play bomb shake animation for wrong choice
+					PlayBombShakeAnimation();
 					// Keep all wires enabled for next attempt
 				}
+			}
+		}
+		
+		private void PlayExplosionAnimation()
+		{
+			try
+			{
+				Storyboard explosion = (Storyboard)FindResource("ExplosionAnimation");
+				if (explosion != null)
+				{
+					// Reset explosion image
+					ExplosionImage.Width = 0;
+					ExplosionImage.Height = 0;
+					ExplosionImage.Opacity = 0;
+					
+					// Play the explosion animation
+					explosion.Begin();
+				}
+			}
+			catch
+			{
+				// If animation fails, just show the explosion image
+				ExplosionImage.Width = 400;
+				ExplosionImage.Height = 400;
+				ExplosionImage.Opacity = 1;
+			}
+		}
+		
+		private void PlayBombShakeAnimation()
+		{
+			try
+			{
+				Storyboard shake = (Storyboard)FindResource("BombShakeAnimation");
+				if (shake != null)
+				{
+					shake.Begin();
+				}
+			}
+			catch
+			{
+				// If animation fails, do nothing
+			}
+		}
+		
+		private void PlayWirePulseAnimation()
+		{
+			try
+			{
+				Storyboard pulse = (Storyboard)FindResource("WirePulseAnimation");
+				if (pulse != null)
+				{
+					pulse.Begin();
+				}
+			}
+			catch
+			{
+				// If animation fails, do nothing
+			}
+		}
+		
+		private void PlaySuccessAnimation()
+		{
+			try
+			{
+				Storyboard success = (Storyboard)FindResource("SuccessAnimation");
+				if (success != null)
+				{
+					success.Begin();
+				}
+			}
+			catch
+			{
+				// If animation fails, do nothing
 			}
 		}
 		

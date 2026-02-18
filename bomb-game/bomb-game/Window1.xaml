@@ -5,6 +5,68 @@
 	Width="1026"
 	Height="710.5">
 	<Window.Resources>
+		<!-- Animation Storyboards -->
+		<Storyboard x:Key="ExplosionAnimation">
+			<DoubleAnimation Storyboard.TargetName="ExplosionImage" 
+						   Storyboard.TargetProperty="Width" 
+						   From="0" To="400" 
+						   Duration="0:0:0.5" />
+			<DoubleAnimation Storyboard.TargetName="ExplosionImage" 
+						   Storyboard.TargetProperty="Height" 
+						   From="0" To="400" 
+						   Duration="0:0:0.5" />
+			<DoubleAnimation Storyboard.TargetName="ExplosionImage" 
+						   Storyboard.TargetProperty="Opacity" 
+						   From="0" To="1" 
+						   Duration="0:0:0.2" />
+			<DoubleAnimation Storyboard.TargetName="ExplosionImage" 
+						   Storyboard.TargetProperty="Opacity" 
+						   From="1" To="0" 
+						   Duration="0:0:0.3" 
+						   BeginTime="0:0:0.2" />
+		</Storyboard>
+		
+		<Storyboard x:Key="BombShakeAnimation">
+			<DoubleAnimation Storyboard.TargetName="PlayPanel" 
+						   Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" 
+						   From="0" To="10" 
+						   Duration="0:0:0.1" 
+						   AutoReverse="True" 
+						   RepeatBehavior="3x" />
+			<DoubleAnimation Storyboard.TargetName="PlayPanel" 
+						   Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)" 
+						   From="0" To="5" 
+						   Duration="0:0:0.1" 
+						   AutoReverse="True" 
+						   RepeatBehavior="3x" />
+		</Storyboard>
+		
+		<Storyboard x:Key="WirePulseAnimation">
+			<DoubleAnimation Storyboard.TargetName="StatusText" 
+						   Storyboard.TargetProperty="FontSize" 
+						   From="18" To="22" 
+						   Duration="0:0:0.3" 
+						   AutoReverse="True" 
+						   RepeatBehavior="2x" />
+		</Storyboard>
+		
+		<Storyboard x:Key="SuccessAnimation">
+			<DoubleAnimation Storyboard.TargetName="StatusText" 
+						   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" 
+						   From="1" To="1.5" 
+						   Duration="0:0:0.3" 
+						   AutoReverse="True" />
+			<DoubleAnimation Storyboard.TargetName="StatusText" 
+						   Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" 
+						   From="1" To="1.5" 
+						   Duration="0:0:0.3" 
+						   AutoReverse="True" />
+			<ColorAnimation Storyboard.TargetName="StatusText" 
+						Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" 
+						From="#FF00FF00" To="#FFFFFF00" 
+						Duration="0:0:0.5" />
+		</Storyboard>
+		
 		<!-- Main Menu Button Style -->
 		<Style x:Key="MainMenuButtonStyle" TargetType="Button">
 			<Setter Property="FontWeight" Value="Bold"/>
@@ -313,6 +375,11 @@
 						Offset="1" />
 				</LinearGradientBrush>
 			</Grid.Background>
+			<Grid.RenderTransform>
+				<TransformGroup>
+					<TranslateTransform x:Name="PlayPanelTransform" X="0" Y="0"/>
+				</TransformGroup>
+			</Grid.RenderTransform>
 			<StackPanel
 				HorizontalAlignment="Center"
 				VerticalAlignment="Center">
@@ -336,7 +403,24 @@
 					FontSize="18"
 					Foreground="#FF00FF00"
 					HorizontalAlignment="Center"
-					Margin="0,0,0,30" />
+					Margin="0,0,0,30">
+					<TextBlock.RenderTransform>
+						<TransformGroup>
+							<ScaleTransform x:Name="StatusTextScale" ScaleX="1" ScaleY="1"/>
+						</TransformGroup>
+					</TextBlock.RenderTransform>
+				</TextBlock>
+				
+				<!-- Explosion Image (Initially Hidden) -->
+				<Image x:Name="ExplosionImage"
+					   Source="pack://application:,,,/images/explode.gif"
+					   Width="0"
+					   Height="0"
+					   Opacity="0"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   Margin="0,0,0,30" />
+				
 				<!-- Wires -->
 				<Grid
 					Width="600"
