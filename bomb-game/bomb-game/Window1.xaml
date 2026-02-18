@@ -6,15 +6,519 @@
 	Height="710.5">
 	<Grid>
 		<Grid.Background>
-			<ImageBrush ImageSource="images/home.gif" Stretch="UniformToFill"/>
+			<ImageBrush
+				ImageSource="pack://application:,,,/images/home.gif"
+				Stretch="UniformToFill" />
 		</Grid.Background>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition
-				Width="0.182758620689655*" />
-			<ColumnDefinition
-				Width="0.226304484859804*" />
-			<ColumnDefinition
-				Width="0.590936894450541*" />
-		</Grid.ColumnDefinitions>
+		<!-- Main Menu Panel -->
+		<Grid
+			x:Name="MainMenuPanel"
+			Visibility="Visible">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="0.182758620689655*" />
+				<ColumnDefinition
+					Width="0.226304484859804*" />
+				<ColumnDefinition
+					Width="0.590936894450541*" />
+			</Grid.ColumnDefinitions>
+			<Label
+				RenderTransformOrigin="0.5,0.5"
+				Content="DIFFUSE THE BOMB"
+				FontSize="50"
+				FontWeight="Bold"
+				FontFamily="Gill Sans"
+				BorderThickness="3,3,3,3"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Stretch"
+				Margin="7.5,63,0,523"
+				Width="698.5"
+				x:Name="diffuse_label"
+				Background="#00FFFFFF"
+				Foreground="#FFFFFFFF" />
+			<Button
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Margin="191.5,218,0,0"
+				Width="228"
+				Height="71.5"
+				Content="PLAY"
+				FontWeight="Bold"
+				FontSize="30"
+				Foreground="#FFFFFFFF"
+				Background="#FFF30000"
+				BorderThickness="8,8,8,8"
+				BorderBrush="#FFFFFFFF"
+				x:Name="play_button"
+				Click="play_button_Click" />
+			<Button
+				FontWeight="Bold"
+				FontSize="30"
+				Foreground="#FFFFFFFF"
+				Background="#FFF30000"
+				BorderThickness="8,8,8,8"
+				BorderBrush="#FFFFFFFF"
+				x:Name="about_button"
+				Grid.Column="2"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Margin="96.7999999999998,325.1,0,0"
+				Width="228"
+				Height="71.5"
+				Content="ABOUT"
+				Click="about_button_Click" />
+			<Button
+				FontWeight="Bold"
+				FontSize="30"
+				Foreground="#FFFFFFFF"
+				Background="#FFF30000"
+				BorderThickness="8,8,8,8"
+				BorderBrush="#FFFFFFFF"
+				x:Name="help_button"
+				Content="HELP"
+				Click="help_button_Click"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Bottom"
+				Margin="191.5,0,0,173.5"
+				Width="228"
+				Height="71.5" />
+			<Button
+				FontWeight="Bold"
+				FontSize="30"
+				Foreground="#FFFFFFFF"
+				Background="#FFF30000"
+				BorderThickness="8,8,8,8"
+				BorderBrush="#FFFFFFFF"
+				x:Name="settings_button"
+				Grid.Column="1"
+				Grid.ColumnSpan="2"
+				Grid.Row="0"
+				HorizontalAlignment="Left"
+				VerticalAlignment="Top"
+				Margin="47.4,325,0,0"
+				Width="228"
+				Height="71.5"
+				Click="settings_button_Click"
+				Content="SETTINGS" />
+		</Grid>
+		<!-- Play Panel -->
+		<Grid
+			x:Name="PlayPanel"
+			Visibility="Collapsed">
+			<Grid.Background>
+				<LinearGradientBrush
+					StartPoint="0,0"
+					EndPoint="1,1">
+					<GradientStop
+						Color="#FF1a1a2e"
+						Offset="0" />
+					<GradientStop
+						Color="#FF16213e"
+						Offset="1" />
+				</LinearGradientBrush>
+			</Grid.Background>
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center">
+				<TextBlock
+					Text="BOMB DEFUSAL"
+					FontSize="40"
+					FontWeight="Bold"
+					Foreground="#FFF30000"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,30" />
+				<TextBlock
+					x:Name="AttemptsText"
+					Text="Attempts Remaining: 5"
+					FontSize="20"
+					Foreground="White"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,20" />
+				<TextBlock
+					x:Name="StatusText"
+					Text="Choose a wire to cut..."
+					FontSize="18"
+					Foreground="#FF00FF00"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,30" />
+				<!-- Wires -->
+				<Grid
+					Width="600"
+					Height="300"
+					Margin="0,0,0,30">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition
+							Width="*" />
+						<ColumnDefinition
+							Width="*" />
+						<ColumnDefinition
+							Width="*" />
+						<ColumnDefinition
+							Width="*" />
+						<ColumnDefinition
+							Width="*" />
+					</Grid.ColumnDefinitions>
+					<Button
+						x:Name="Wire1"
+						Grid.Column="0"
+						Background="#FFFF0000"
+						Height="200"
+						Margin="10"
+						Content="RED"
+						FontSize="16"
+						FontWeight="Bold"
+						Foreground="White"
+						Click="Wire_Click" />
+					<Button
+						x:Name="Wire2"
+						Grid.Column="1"
+						Background="#FF00FF00"
+						Height="200"
+						Margin="10"
+						Content="GREEN"
+						FontSize="16"
+						FontWeight="Bold"
+						Foreground="White"
+						Click="Wire_Click" />
+					<Button
+						x:Name="Wire3"
+						Grid.Column="2"
+						Background="#FF0000FF"
+						Height="200"
+						Margin="10"
+						Content="BLUE"
+						FontSize="16"
+						FontWeight="Bold"
+						Foreground="White"
+						Click="Wire_Click" />
+					<Button
+						x:Name="Wire4"
+						Grid.Column="3"
+						Background="#FFFFFF00"
+						Height="200"
+						Margin="10"
+						Content="YELLOW"
+						FontSize="16"
+						FontWeight="Bold"
+						Foreground="Black"
+						Click="Wire_Click" />
+					<Button
+						x:Name="Wire5"
+						Grid.Column="4"
+						Background="#FFFF00FF"
+						Height="200"
+						Margin="10"
+						Content="PURPLE"
+						FontSize="16"
+						FontWeight="Bold"
+						Foreground="White"
+						Click="Wire_Click" />
+				</Grid>
+				<Button
+					x:Name="BackToMenuFromPlay"
+					Content="BACK TO MENU"
+					Width="200"
+					Height="50"
+					Background="#FF333333"
+					Foreground="White"
+					FontSize="16"
+					FontWeight="Bold"
+					Click="BackToMenu_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- Settings Panel -->
+		<Grid
+			x:Name="SettingsPanel"
+			Visibility="Collapsed">
+			<Grid.Background>
+				<LinearGradientBrush
+					StartPoint="0,0"
+					EndPoint="1,1">
+					<GradientStop
+						Color="#FF2c3e50"
+						Offset="0" />
+					<GradientStop
+						Color="#FF34495e"
+						Offset="1" />
+				</LinearGradientBrush>
+			</Grid.Background>
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center">
+				<TextBlock
+					Text="SETTINGS"
+					FontSize="40"
+					FontWeight="Bold"
+					Foreground="White"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,50" />
+				<Border
+					Background="#FF34495e"
+					CornerRadius="10"
+					Padding="20"
+					Margin="0,0,0,30">
+					<StackPanel>
+						<TextBlock
+							Text="Difficulty"
+							FontSize="20"
+							Foreground="White"
+							Margin="0,0,0,10" />
+						<ComboBox
+							x:Name="DifficultyComboBox"
+							Width="200"
+							Height="40"
+							FontSize="16">
+							<ComboBoxItem
+								Content="Easy"
+								IsSelected="True" />
+							<ComboBoxItem
+								Content="Medium" />
+							<ComboBoxItem
+								Content="Hard" />
+						</ComboBox>
+					</StackPanel>
+				</Border>
+				<Border
+					Background="#FF34495e"
+					CornerRadius="10"
+					Padding="20"
+					Margin="0,0,0,30">
+					<StackPanel>
+						<TextBlock
+							Text="Sound Effects"
+							FontSize="20"
+							Foreground="White"
+							Margin="0,0,0,10" />
+						<CheckBox
+							x:Name="SoundCheckBox"
+							Content="Enable Sound"
+							IsChecked="True"
+							FontSize="16"
+							Foreground="White" />
+					</StackPanel>
+				</Border>
+				<Button
+					x:Name="BackToMenuFromSettings"
+					Content="BACK TO MENU"
+					Width="200"
+					Height="50"
+					Background="#FF333333"
+					Foreground="White"
+					FontSize="16"
+					FontWeight="Bold"
+					Click="BackToMenu_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- Help Panel -->
+		<Grid
+			x:Name="HelpPanel"
+			Visibility="Collapsed">
+			<Grid.Background>
+				<LinearGradientBrush
+					StartPoint="0,0"
+					EndPoint="1,1">
+					<GradientStop
+						Color="#FF27ae60"
+						Offset="0" />
+					<GradientStop
+						Color="#FF2ecc71"
+						Offset="1" />
+				</LinearGradientBrush>
+			</Grid.Background>
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Width="800">
+				<TextBlock
+					Text="HOW TO PLAY"
+					FontSize="40"
+					FontWeight="Bold"
+					Foreground="White"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,30" />
+				<Border
+					Background="#FF27ae60"
+					CornerRadius="10"
+					Padding="20"
+					Margin="0,0,0,30">
+					<StackPanel>
+						<TextBlock
+							Text="🎯 OBJECTIVE"
+							FontSize="24"
+							FontWeight="Bold"
+							Foreground="White"
+							Margin="0,0,0,10" />
+						<TextBlock
+							Text="Test your luck by cutting the correct wire to defuse the bomb!"
+							FontSize="16"
+							Foreground="White"
+							TextWrapping="Wrap"
+							Margin="0,0,0,20" />
+						<TextBlock
+							Text="🎮 GAMEPLAY"
+							FontSize="24"
+							FontWeight="Bold"
+							Foreground="White"
+							Margin="0,0,0,10" />
+						<TextBlock
+							Text="• You have 5 attempts to find the correct wire"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Click on any wire to cut it"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• One wire is randomly selected as the bomb wire"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Cut the wrong wire and the bomb explodes!"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,20" />
+						<TextBlock
+							Text="🏆 WINNING"
+							FontSize="24"
+							FontWeight="Bold"
+							Foreground="White"
+							Margin="0,0,0,10" />
+						<TextBlock
+							Text="Find the correct wire before running out of attempts to win!"
+							FontSize="16"
+							Foreground="White"
+							TextWrapping="Wrap" />
+					</StackPanel>
+				</Border>
+				<Button
+					x:Name="BackToMenuFromHelp"
+					Content="BACK TO MENU"
+					Width="200"
+					Height="50"
+					Background="#FF333333"
+					Foreground="White"
+					FontSize="16"
+					FontWeight="Bold"
+					Click="BackToMenu_Click" />
+			</StackPanel>
+		</Grid>
+		<!-- About Panel -->
+		<Grid
+			x:Name="AboutPanel"
+			Visibility="Collapsed">
+			<Grid.Background>
+				<LinearGradientBrush
+					StartPoint="0,0"
+					EndPoint="1,1">
+					<GradientStop
+						Color="#FF8e44ad"
+						Offset="0" />
+					<GradientStop
+						Color="#FF9b59b6"
+						Offset="1" />
+				</LinearGradientBrush>
+			</Grid.Background>
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Width="800">
+				<TextBlock
+					Text="ABOUT"
+					FontSize="40"
+					FontWeight="Bold"
+					Foreground="White"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,30" />
+				<Border
+					Background="#FF8e44ad"
+					CornerRadius="10"
+					Padding="20"
+					Margin="0,0,0,30">
+					<StackPanel>
+						<TextBlock
+							Text="💣 BOMB DEFUSAL GAME"
+							FontSize="24"
+							FontWeight="Bold"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							Margin="0,0,0,20" />
+						<TextBlock
+							Text="Version: 1.0"
+							FontSize="16"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							Margin="0,0,0,10" />
+						<TextBlock
+							Text="Created by: Jonna Bohol"
+							FontSize="16"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							Margin="0,0,0,20" />
+						<TextBlock
+							Text="A thrilling game of luck and nerve where every decision counts!"
+							FontSize="16"
+							Foreground="White"
+							TextWrapping="Wrap"
+							HorizontalAlignment="Center"
+							Margin="0,0,0,20" />
+						<TextBlock
+							Text="🎮 Features:"
+							FontSize="18"
+							FontWeight="Bold"
+							Foreground="White"
+							Margin="0,0,0,10" />
+						<TextBlock
+							Text="• Random bomb wire placement"
+							FontSize="14"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• 5 trial attempts per game"
+							FontSize="14"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Modern UI design"
+							FontSize="14"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Multiple difficulty settings"
+							FontSize="14"
+							Foreground="White"
+							Margin="0,0,0,20" />
+						<TextBlock
+							Text="© 2026 Jonna Bohol. All rights reserved."
+							FontSize="12"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							FontStyle="Italic" />
+					</StackPanel>
+				</Border>
+				<Button
+					x:Name="BackToMenuFromAbout"
+					Content="BACK TO MENU"
+					Width="200"
+					Height="50"
+					Background="#FF333333"
+					Foreground="White"
+					FontSize="16"
+					FontWeight="Bold"
+					Click="BackToMenu_Click" />
+			</StackPanel>
+		</Grid>
 	</Grid>
 </Window>
