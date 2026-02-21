@@ -487,16 +487,9 @@
 			x:Name="SettingsPanel"
 			Visibility="Collapsed">
 			<Grid.Background>
-				<LinearGradientBrush
-					StartPoint="0,0"
-					EndPoint="1,1">
-					<GradientStop
-						Color="#FF2c3e50"
-						Offset="0" />
-					<GradientStop
-						Color="#FF34495e"
-						Offset="1" />
-				</LinearGradientBrush>
+				<ImageBrush
+					ImageSource="pack://application:,,,/images/setttings.jpg"
+					Stretch="UniformToFill" />
 			</Grid.Background>
 			<StackPanel
 				HorizontalAlignment="Center"
