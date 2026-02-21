@@ -16,6 +16,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace bomb_game
 {
@@ -28,10 +29,16 @@ namespace bomb_game
 		private int bombWireIndex = -1;
 		private int attemptsRemaining = 5;
 		private bool gameActive = false;
+		private DispatcherTimer gameTimer;
+		private int timeRemaining;
+		private int timeLimit;
+		private int score;
+		private DateTime gameStartTime;
 		
 		public Window1()
 		{
 			InitializeComponent();
+			InitializeTimer();
 		}
 		
 		void play_button_Click(object sender, RoutedEventArgs e)
@@ -81,8 +88,9 @@ namespace bomb_game
 			if (wireIndex == bombWireIndex)
 			{
 				// Correct wire - bomb defused!
-				StatusText.Text = "💣 BOMB DEFUSED! You Win! 🎉";
-				StatusText.Foreground = new SolidColorBrush(Colors.Lime);
+				gameTimer.Stop();
+				CalculateScore();
+				ShowWinScreen();
 				gameActive = false;
 				DisableAllWires();
 				PlaySuccessAnimation();
@@ -91,7 +99,7 @@ namespace bomb_game
 			{
 				// Wrong wire - reduce attempts and change bomb wire
 				attemptsRemaining--;
-				AttemptsText.Text = "Attempts Remaining: " + attemptsRemaining;
+				AttemptsText.Text = "Score: " + attemptsRemaining;
 				
 				// Change bomb wire to a new random position (different from current)
 				int newBombWire;
@@ -104,8 +112,8 @@ namespace bomb_game
 				
 				if (attemptsRemaining <= 0)
 				{
-					StatusText.Text = "💥 BOOM! Bomb Exploded! You Lose! 💥";
-					StatusText.Foreground = new SolidColorBrush(Colors.Red);
+					gameTimer.Stop();
+					ShowLoseScreen();
 					gameActive = false;
 					DisableAllWires();
 					RevealBombWire();
@@ -114,7 +122,7 @@ namespace bomb_game
 				else
 				{
 					StatusText.Text = "❌ Wrong wire! The bomb wire has moved! Try again!";
-					StatusText.Foreground = new SolidColorBrush(Colors.Orange);
+					UpdateTimerDisplay();
 					// Play bomb shake animation for wrong choice
 					PlayBombShakeAnimation();
 					// Keep all wires enabled for next attempt
@@ -225,20 +233,147 @@ namespace bomb_game
 			}
 		}
 		
+		private void InitializeTimer()
+		{
+			gameTimer = new DispatcherTimer();
+			gameTimer.Interval = TimeSpan.FromSeconds(1);
+			gameTimer.Tick += GameTimer_Tick;
+		}
+		
+		private void GameTimer_Tick(object sender, EventArgs e)
+		{
+			timeRemaining--;
+			UpdateTimerDisplay();
+			
+			if (timeRemaining <= 0)
+			{
+				// Time's up - bomb explodes!
+				gameTimer.Stop();
+				ShowLoseScreen();
+				gameActive = false;
+				DisableAllWires();
+				RevealBombWire();
+				PlayExplosionAnimation();
+			}
+		}
+		
+		private void CalculateScore()
+		{
+			TimeSpan timeTaken = DateTime.Now - gameStartTime;
+			int baseScore = 100;
+			int timeBonus = Math.Max(0, (timeLimit - (int)timeTaken.TotalSeconds) * 2);
+			int attemptBonus = attemptsRemaining * 10;
+			score = baseScore + timeBonus + attemptBonus;
+		}
+		
+		private void ShowWinScreen()
+		{
+			StatusText.Text = "🎉 CONGRATULATIONS! You have good luck! 🎉";
+			StatusText.Foreground = new SolidColorBrush(Colors.Gold);
+			
+			// Show score after a delay
+			DispatcherTimer scoreTimer = new DispatcherTimer();
+			scoreTimer.Interval = TimeSpan.FromSeconds(2);
+			scoreTimer.Tick += (s, e) => {
+				StatusText.Text = string.Format("🏆 FINAL SCORE: {0} 🏆", score);
+				scoreTimer.Stop();
+				ShowGameButtons();
+			};
+			scoreTimer.Start();
+		}
+		
+		private void ShowLoseScreen()
+		{
+			StatusText.Text = "💥 BOOM! Bomb Exploded! 💥";
+			StatusText.Foreground = new SolidColorBrush(Colors.Red);
+			
+			// Show comforting message after explosion
+			DispatcherTimer comfortTimer = new DispatcherTimer();
+			comfortTimer.Interval = TimeSpan.FromSeconds(3);
+			comfortTimer.Tick += (s, e) => {
+				StatusText.Text = "Don't give up! Try again or go back home.";
+				StatusText.Foreground = new SolidColorBrush(Colors.White);
+				comfortTimer.Stop();
+				ShowGameButtons();
+			};
+			comfortTimer.Start();
+		}
+		
+		private void ShowGameButtons()
+		{
+			GameOverButtons.Visibility = Visibility.Visible;
+		}
+		
+		private void TryAgain_Click(object sender, RoutedEventArgs e)
+		{
+			InitializeGame();
+		}
+		
+		private void BackToMenuFromGame_Click(object sender, RoutedEventArgs e)
+		{
+			SwitchToPanel("MainMenu");
+		}
+		
+		private void UpdateTimerDisplay()
+		{
+			if (timeRemaining <= 5)
+			{
+				StatusText.Text = string.Format("⏰ {0}s remaining! HURRY!", timeRemaining);
+				StatusText.Foreground = new SolidColorBrush(Colors.Red);
+			}
+			else if (timeRemaining <= 10)
+			{
+				StatusText.Text = string.Format("⏰ Time: {0}s", timeRemaining);
+				StatusText.Foreground = new SolidColorBrush(Colors.Orange);
+			}
+			else
+			{
+				StatusText.Text = string.Format("⏰ Time: {0}s", timeRemaining);
+				StatusText.Foreground = new SolidColorBrush(Colors.Lime);
+			}
+			
+			// Also update score display
+			AttemptsText.Text = string.Format("Score: {0}", score);
+		}
+		
+		private int GetTimeLimitFromDifficulty()
+		{
+			var selectedItem = DifficultyComboBox.SelectedItem as ComboBoxItem;
+			if (selectedItem != null)
+			{
+				switch (selectedItem.Content.ToString())
+				{
+					case "Easy":
+						return 20;
+					case "Medium":
+						return 15;
+					case "Hard":
+						return 10;
+				}
+			}
+			return 15; // Default to medium
+		}
+		
 		private void InitializeGame()
 		{
 			// Reset game state
 			attemptsRemaining = 5;
 			gameActive = true;
 			bombWireIndex = random.Next(0, 5); // Random wire 0-4
+			timeLimit = GetTimeLimitFromDifficulty();
+			timeRemaining = timeLimit;
+			score = 0;
+			gameStartTime = DateTime.Now;
 			
 			// Reset UI
-			AttemptsText.Text = "Attempts Remaining: " + attemptsRemaining;
-			StatusText.Text = "Choose a wire to cut...";
-			StatusText.Foreground = new SolidColorBrush(Colors.Lime);
+			AttemptsText.Text = "Score: " + attemptsRemaining;
+			UpdateTimerDisplay();
 			
 			// Enable and reset all wires
 			ResetAllWires();
+			
+			// Start the timer
+			gameTimer.Start();
 		}
 		
 		private void ResetAllWires()

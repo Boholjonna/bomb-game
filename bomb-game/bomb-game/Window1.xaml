@@ -357,27 +357,34 @@
 					Foreground="#FFF30000"
 					HorizontalAlignment="Center"
 					Margin="0,0,0,30" />
-				<TextBlock
-					x:Name="AttemptsText"
-					Text="Attempts Remaining: 5"
-					FontSize="20"
-					Foreground="White"
+				<StackPanel
+					Orientation="Horizontal"
 					HorizontalAlignment="Center"
-					Margin="0,0,0,20" />
-				<TextBlock
-					x:Name="StatusText"
-					Text="Choose a wire to cut..."
-					FontSize="18"
-					Foreground="#FF00FF00"
-					HorizontalAlignment="Center"
-					Margin="0,0,0,30">
-					<TextBlock.RenderTransform>
-						<TransformGroup>
-							<ScaleTransform x:Name="StatusTextScale" ScaleX="1" ScaleY="1"/>
-						</TransformGroup>
-					</TextBlock.RenderTransform>
-				</TextBlock>
-				
+					Margin="0,0,0,20">
+					<TextBlock
+						x:Name="AttemptsText"
+						Text="Score: 0"
+						FontSize="25"
+						FontWeight="Bold"
+						Foreground="White"
+						FontFamily="Arial Black"
+						Margin="0,0,20,0" />
+					<TextBlock
+						x:Name="StatusText"
+						Text="Choose a wire to cut..."
+						FontSize="25"
+						FontWeight="Bold"
+						Foreground="#FF00FF00"
+						FontFamily="Arial Black"
+						HorizontalAlignment="Center"
+						Margin="20,0,0,0">
+						<TextBlock.RenderTransform>
+							<TransformGroup>
+								<ScaleTransform x:Name="StatusTextScale" ScaleX="1" ScaleY="1"/>
+							</TransformGroup>
+						</TextBlock.RenderTransform>
+					</TextBlock>
+				</StackPanel>
 				<!-- Explosion Image (Initially Hidden) -->
 				<Image x:Name="ExplosionImage"
 					   Source="pack://application:,,,/images/explode.gif"
@@ -436,6 +443,36 @@
 						Click="Wire_Click"
 						Style="{StaticResource PurpleWireStyle}" />
 				</Grid>
+				<!-- Game Over Buttons (Initially Hidden) -->
+				<StackPanel
+					x:Name="GameOverButtons"
+					Orientation="Horizontal"
+					HorizontalAlignment="Center"
+					Visibility="Collapsed"
+					Margin="0,20,0,0">
+					<Button
+						x:Name="TryAgainButton"
+						Content="TRY AGAIN"
+						Width="150"
+						Height="50"
+						Background="#4CAF50"
+						Foreground="White"
+						FontSize="16"
+						FontWeight="Bold"
+						Margin="0,0,10,0"
+						Click="TryAgain_Click" />
+					<Button
+						x:Name="BackToMenuFromGameButton"
+						Content="BACK TO MENU"
+						Width="150"
+						Height="50"
+						Background="#FF5722"
+						Foreground="White"
+						FontSize="16"
+						FontWeight="Bold"
+						Margin="10,0,0,0"
+						Click="BackToMenuFromGame_Click" />
+				</StackPanel>
 				<Button
 					x:Name="BackToMenuFromPlay"
 					Content="BACK TO MENU"
@@ -469,7 +506,7 @@
 					HorizontalAlignment="Center"
 					Margin="0,0,0,50" />
 				<Border
-					Background="#FF34495e"
+					Background="#b80505"
 					CornerRadius="10"
 					Padding="20"
 					Margin="0,0,0,30">
@@ -495,7 +532,7 @@
 					</StackPanel>
 				</Border>
 				<Border
-					Background="#FF34495e"
+					Background="#b80505"
 					CornerRadius="10"
 					Padding="20"
 					Margin="0,0,0,30">
@@ -505,12 +542,20 @@
 							FontSize="20"
 							Foreground="White"
 							Margin="0,0,0,10" />
-						<CheckBox
-							x:Name="SoundCheckBox"
-							Content="Enable Sound"
-							IsChecked="True"
-							FontSize="16"
-							Foreground="White" />
+						<StackPanel Orientation="Horizontal">
+							<CheckBox
+								x:Name="SoundCheckBox"
+								IsChecked="True"
+								FontSize="16"
+								Foreground="White"
+								VerticalAlignment="Center"
+								Margin="0,0,10,0" />
+							<TextBlock
+								Text="Enable Sound"
+								FontSize="16"
+								Foreground="White"
+								VerticalAlignment="Center" />
+						</StackPanel>
 					</StackPanel>
 				</Border>
 				<Button
