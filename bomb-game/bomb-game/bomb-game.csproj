@@ -78,6 +78,7 @@
     <Resource Include="images\home.gif" />
     <Resource Include="images\explode.gif" />
     <Resource Include="images\setttings.jpg" />
+    <Resource Include="images\play.jfif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

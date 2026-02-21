@@ -257,122 +257,90 @@
 		<Grid
 			x:Name="MainMenuPanel"
 			Visibility="Visible">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition
-					Width="0.182758620689655*" />
-				<ColumnDefinition
-					Width="0.226304484859804*" />
-				<ColumnDefinition
-					Width="0.590936894450541*" />
-			</Grid.ColumnDefinitions>
-			<Label
-				RenderTransformOrigin="0.5,0.5"
-				Content="DIFFUSE THE BOMB"
-				FontSize="50"
-				FontWeight="Bold"
-				FontFamily="Gill Sans"
-				BorderThickness="3,3,3,3"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Grid.Row="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Stretch"
-				Margin="7.5,63,0,523"
-				Width="698.5"
-				x:Name="diffuse_label"
-				Background="#00FFFFFF"
-				Foreground="#FFFFFFFF" />
-			<Button
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Grid.Row="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="191.5,218,0,0"
-				Width="228"
-				Height="71.5"
-				Content="PLAY"
-				FontWeight="Bold"
-				FontSize="30"
-				Foreground="#FFFFFFFF"
-				Background="#FFF30000"
-				BorderThickness="8,8,8,8"
-				BorderBrush="#FFFFFFFF"
-				x:Name="play_button"
-				Click="play_button_Click"
-				Style="{StaticResource MainMenuButtonStyle}" />
-			<Button
-				FontWeight="Bold"
-				FontSize="30"
-				Foreground="#FFFFFFFF"
-				Background="#FFF30000"
-				BorderThickness="8,8,8,8"
-				BorderBrush="#FFFFFFFF"
-				x:Name="about_button"
-				Grid.Column="2"
-				Grid.Row="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="96.7999999999998,325.1,0,0"
-				Width="228"
-				Height="71.5"
-				Content="ABOUT"
-				Click="about_button_Click"
-				Style="{StaticResource MainMenuButtonStyle}" />
-			<Button
-				FontWeight="Bold"
-				FontSize="30"
-				Foreground="#FFFFFFFF"
-				Background="#FFF30000"
-				BorderThickness="8,8,8,8"
-				BorderBrush="#FFFFFFFF"
-				x:Name="help_button"
-				Content="HELP"
-				Click="help_button_Click"
-				Style="{StaticResource MainMenuButtonStyle}"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Grid.Row="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Bottom"
-				Margin="191.5,0,0,173.5"
-				Width="228"
-				Height="71.5" />
-			<Button
-				FontWeight="Bold"
-				FontSize="30"
-				Foreground="#FFFFFFFF"
-				Background="#FFF30000"
-				BorderThickness="8,8,8,8"
-				BorderBrush="#FFFFFFFF"
-				x:Name="settings_button"
-				Grid.Column="1"
-				Grid.ColumnSpan="2"
-				Grid.Row="0"
-				HorizontalAlignment="Left"
-				VerticalAlignment="Top"
-				Margin="47.4,325,0,0"
-				Width="228"
-				Height="71.5"
-				Click="settings_button_Click"
-				Content="SETTINGS"
-				Style="{StaticResource MainMenuButtonStyle}" />
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center">
+				<TextBlock
+					Text="DIFFUSE THE BOMB"
+					FontSize="50"
+					FontWeight="Bold"
+					FontFamily="Gill Sans"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Margin="0,0,0,50"
+					Background="#00FFFFFF"
+					Foreground="#FFFFFFFF" />
+				<Button
+					Content="PLAY"
+					FontWeight="Bold"
+					FontSize="30"
+					Foreground="#FFFFFFFF"
+					Background="#FFF30000"
+					BorderThickness="8,8,8,8"
+					BorderBrush="#FFFFFFFF"
+					x:Name="play_button"
+					Click="play_button_Click"
+					Style="{StaticResource MainMenuButtonStyle}"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,20"
+					Width="228"
+					Height="71.5" />
+				<StackPanel
+					Orientation="Horizontal"
+					HorizontalAlignment="Center"
+					Margin="0,0,0,20">
+					<Button
+						Content="SETTINGS"
+						FontWeight="Bold"
+						FontSize="30"
+						Foreground="#FFFFFFFF"
+						Background="#FFF30000"
+						BorderThickness="8,8,8,8"
+						BorderBrush="#FFFFFFFF"
+						x:Name="settings_button"
+						Click="settings_button_Click"
+						Style="{StaticResource MainMenuButtonStyle}"
+						Width="228"
+						Height="71.5"
+						Margin="0,0,20,0" />
+					<Button
+						Content="ABOUT"
+						FontWeight="Bold"
+						FontSize="30"
+						Foreground="#FFFFFFFF"
+						Background="#FFF30000"
+						BorderThickness="8,8,8,8"
+						BorderBrush="#FFFFFFFF"
+						x:Name="about_button"
+						Click="about_button_Click"
+						Style="{StaticResource MainMenuButtonStyle}"
+						Width="228"
+						Height="71.5" />
+				</StackPanel>
+				<Button
+					Content="HELP"
+					FontWeight="Bold"
+					FontSize="30"
+					Foreground="#FFFFFFFF"
+					Background="#FFF30000"
+					BorderThickness="8,8,8,8"
+					BorderBrush="#FFFFFFFF"
+					x:Name="help_button"
+					Click="help_button_Click"
+					Style="{StaticResource MainMenuButtonStyle}"
+					HorizontalAlignment="Center"
+					Width="228"
+					Height="71.5" />
+			</StackPanel>
 		</Grid>
 		<!-- Play Panel -->
 		<Grid
 			x:Name="PlayPanel"
 			Visibility="Collapsed">
 			<Grid.Background>
-				<LinearGradientBrush
-					StartPoint="0,0"
-					EndPoint="1,1">
-					<GradientStop
-						Color="#FF1a1a2e"
-						Offset="0" />
-					<GradientStop
-						Color="#FF16213e"
-						Offset="1" />
-				</LinearGradientBrush>
+				<ImageBrush
+					ImageSource="pack://application:,,,/images/play.jfif"
+					Stretch="UniformToFill" />
 			</Grid.Background>
 			<Grid.RenderTransform>
 				<TransformGroup>
