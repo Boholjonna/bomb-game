@@ -239,8 +239,8 @@
 						</Border>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsMouseOver" Value="True">
-								<Setter TargetName="border" Property="Background" Value="#FF222222"/>
-								<Setter TargetName="border" Property="BorderBrush" Value="#FF555555"/>
+								<Setter TargetName="border" Property="Background" Value="#8a0000"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#aa0000"/>
 							</Trigger>
 						</ControlTemplate.Triggers>
 					</ControlTemplate>
@@ -250,9 +250,8 @@
 	</Window.Resources>
 	<Grid>
 		<Grid.Background>
-			<ImageBrush
-				ImageSource="pack://application:,,,/images/home.gif"
-				Stretch="UniformToFill" />
+			<ImageBrush ImageSource="pack://application:,,,/images/home.gif"
+					   Stretch="UniformToFill" />
 		</Grid.Background>
 		<!-- Main Menu Panel -->
 		<Grid
@@ -551,7 +550,8 @@
 					Content="BACK TO MENU"
 					Width="200"
 					Height="50"
-					Background="#FF333333"
+					Background="#4f0000"
+					BorderBrush="#8a0000"
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
@@ -564,16 +564,7 @@
 			x:Name="HelpPanel"
 			Visibility="Collapsed">
 			<Grid.Background>
-				<LinearGradientBrush
-					StartPoint="0,0"
-					EndPoint="1,1">
-					<GradientStop
-						Color="#FF27ae60"
-						Offset="0" />
-					<GradientStop
-						Color="#FF2ecc71"
-						Offset="1" />
-				</LinearGradientBrush>
+				<SolidColorBrush Color="#b80505" />
 			</Grid.Background>
 			<StackPanel
 				HorizontalAlignment="Center"
@@ -587,7 +578,7 @@
 					HorizontalAlignment="Center"
 					Margin="0,0,0,30" />
 				<Border
-					Background="#FF27ae60"
+					Background="#ff3838"
 					CornerRadius="10"
 					Padding="20"
 					Margin="0,0,0,30">
@@ -648,7 +639,8 @@
 					Content="BACK TO MENU"
 					Width="200"
 					Height="50"
-					Background="#FF333333"
+					Background="#b80505"
+					BorderBrush="#ff3838"
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
@@ -711,26 +703,31 @@
 							FontSize="18"
 							FontWeight="Bold"
 							Foreground="White"
+							HorizontalAlignment="Center"
 							Margin="0,0,0,10" />
 						<TextBlock
 							Text="• Random bomb wire placement"
 							FontSize="14"
 							Foreground="White"
+							HorizontalAlignment="Center"
 							Margin="0,0,0,5" />
 						<TextBlock
 							Text="• 5 trial attempts per game"
 							FontSize="14"
 							Foreground="White"
+							HorizontalAlignment="Center"
 							Margin="0,0,0,5" />
 						<TextBlock
 							Text="• Modern UI design"
 							FontSize="14"
 							Foreground="White"
+							HorizontalAlignment="Center"
 							Margin="0,0,0,5" />
 						<TextBlock
 							Text="• Multiple difficulty settings"
 							FontSize="14"
 							Foreground="White"
+							HorizontalAlignment="Center"
 							Margin="0,0,0,20" />
 						<TextBlock
 							Text="© 2026 Jonna Bohol. All rights reserved."
@@ -745,7 +742,8 @@
 					Content="BACK TO MENU"
 					Width="200"
 					Height="50"
-					Background="#FF333333"
+					Background="#4f0000"
+					BorderBrush="#8a0000"
 					Foreground="White"
 					FontSize="16"
 					FontWeight="Bold"
