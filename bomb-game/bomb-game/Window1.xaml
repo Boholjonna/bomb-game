@@ -661,16 +661,7 @@
 			x:Name="AboutPanel"
 			Visibility="Collapsed">
 			<Grid.Background>
-				<LinearGradientBrush
-					StartPoint="0,0"
-					EndPoint="1,1">
-					<GradientStop
-						Color="#FF8e44ad"
-						Offset="0" />
-					<GradientStop
-						Color="#FF9b59b6"
-						Offset="1" />
-				</LinearGradientBrush>
+				<SolidColorBrush Color="#4f0000" />
 			</Grid.Background>
 			<StackPanel
 				HorizontalAlignment="Center"
@@ -684,7 +675,7 @@
 					HorizontalAlignment="Center"
 					Margin="0,0,0,30" />
 				<Border
-					Background="#FF8e44ad"
+					Background="#8a0000"
 					CornerRadius="10"
 					Padding="20"
 					Margin="0,0,0,30">
