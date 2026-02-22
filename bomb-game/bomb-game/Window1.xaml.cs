@@ -43,6 +43,9 @@ namespace bomb_game
 		
 		void play_button_Click(object sender, RoutedEventArgs e)
 		{
+			// Hide game over buttons before starting new game
+			GameOverButtons.Visibility = Visibility.Collapsed;
+			
 			SwitchToPanel("Play");
 			InitializeGame();
 		}
@@ -136,24 +139,41 @@ namespace bomb_game
 		{
 			try
 			{
+				// Hide bomb container during explosion
+				BombContainer.Visibility = Visibility.Collapsed;
+				
+				// Show explosion container
+				ExplosionContainer.Visibility = Visibility.Visible;
+				
 				Storyboard explosion = (Storyboard)FindResource("ExplosionAnimation");
 				if (explosion != null)
 				{
-					// Reset explosion image
-					ExplosionImage.Width = 0;
-					ExplosionImage.Height = 0;
-					ExplosionImage.Opacity = 0;
-					
 					// Play the explosion animation
 					explosion.Begin();
+					
+					// Hide explosion container after animation completes (assuming 2 seconds duration)
+					DispatcherTimer hideTimer = new DispatcherTimer();
+					hideTimer.Interval = TimeSpan.FromSeconds(2);
+					hideTimer.Tick += (s, e) => {
+						ExplosionContainer.Visibility = Visibility.Collapsed;
+						hideTimer.Stop();
+					};
+					hideTimer.Start();
 				}
 			}
 			catch
 			{
-				// If animation fails, just show the explosion image
-				ExplosionImage.Width = 400;
-				ExplosionImage.Height = 400;
-				ExplosionImage.Opacity = 1;
+				// If animation fails, show explosion image and hide after delay
+				BombContainer.Visibility = Visibility.Collapsed;
+				ExplosionContainer.Visibility = Visibility.Visible;
+				
+				DispatcherTimer hideTimer = new DispatcherTimer();
+				hideTimer.Interval = TimeSpan.FromSeconds(2);
+				hideTimer.Tick += (s, e) => {
+					ExplosionContainer.Visibility = Visibility.Collapsed;
+					hideTimer.Stop();
+				};
+				hideTimer.Start();
 			}
 		}
 		
@@ -305,6 +325,10 @@ namespace bomb_game
 		
 		private void TryAgain_Click(object sender, RoutedEventArgs e)
 		{
+			// Hide game over buttons
+			GameOverButtons.Visibility = Visibility.Collapsed;
+			
+			// Reset everything to initial game state
 			InitializeGame();
 		}
 		
@@ -370,6 +394,13 @@ namespace bomb_game
 			StatusText.Foreground = new SolidColorBrush(Colors.Lime);
 			UpdateTimerDisplay();
 			
+			// Show bomb container and reset explosion image
+			BombContainer.Visibility = Visibility.Visible;
+			ExplosionContainer.Visibility = Visibility.Collapsed;
+			ExplosionImage.Width = 400;
+			ExplosionImage.Height = 400;
+			ExplosionImage.Opacity = 1;
+			
 			// Enable and reset all wires
 			ResetAllWires();
 			
@@ -399,25 +430,7 @@ namespace bomb_game
 		
 		private void RevealBombWire()
 		{
-			switch (bombWireIndex)
-			{
-				case 0:
-					Wire1.BorderBrush = new SolidColorBrush(Colors.Red);
-					Wire1.BorderThickness = new Thickness(5);
-					break;
-				case 1:
-					Wire2.BorderBrush = new SolidColorBrush(Colors.Red);
-					Wire2.BorderThickness = new Thickness(5);
-					break;
-				case 2:
-					Wire3.BorderBrush = new SolidColorBrush(Colors.Red);
-					Wire3.BorderThickness = new Thickness(5);
-					break;
-				case 3:
-					Wire4.BorderBrush = new SolidColorBrush(Colors.Red);
-					Wire4.BorderThickness = new Thickness(5);
-					break;
-			}
+			// Red border removed - wires stay as they are
 		}
 		
 		void play_button_Copy3_Click(object sender, RoutedEventArgs e)

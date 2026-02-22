@@ -469,17 +469,23 @@
 						</TextBlock.RenderTransform>
 					</TextBlock>
 				</StackPanel>
-				<!-- Explosion Image (Initially Hidden) -->
-				<Image x:Name="ExplosionImage"
-					   Source="pack://application:,,,/images/explode.gif"
-					   Width="0"
-					   Height="0"
-					   Opacity="0"
-					   HorizontalAlignment="Center"
-					   VerticalAlignment="Center"
-					   Margin="0,0,0,30" />
+				<!-- Explosion Container (Initially Hidden) -->
+				<Grid x:Name="ExplosionContainer"
+					  Visibility="Collapsed"
+					  HorizontalAlignment="Center"
+					  VerticalAlignment="Center"
+					  Margin="0,0,0,30">
+					<Image x:Name="ExplosionImage"
+						   Source="pack://application:,,,/images/explode.gif"
+						   Width="400"
+						   Height="400"
+						   Opacity="1"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center" />
+				</Grid>
 				<!-- Animated Circular Bomb -->
 				<Grid
+					x:Name="BombContainer"
 					Width="400"
 					Height="400"
 					Margin="0,0,0,30"
@@ -702,40 +708,13 @@
 							Height="40"
 							FontSize="16">
 							<ComboBoxItem
-								Content="Easy"
-								IsSelected="True" />
+								Content="Easy" />
 							<ComboBoxItem
 								Content="Medium" />
 							<ComboBoxItem
-								Content="Hard" />
+								Content="Hard"
+								IsSelected="True" />
 						</ComboBox>
-					</StackPanel>
-				</Border>
-				<Border
-					Background="#b80505"
-					CornerRadius="10"
-					Padding="20"
-					Margin="0,0,0,30">
-					<StackPanel>
-						<TextBlock
-							Text="Sound Effects"
-							FontSize="20"
-							Foreground="White"
-							Margin="0,0,0,10" />
-						<StackPanel Orientation="Horizontal">
-							<CheckBox
-								x:Name="SoundCheckBox"
-								IsChecked="True"
-								FontSize="16"
-								Foreground="White"
-								VerticalAlignment="Center"
-								Margin="0,0,10,0" />
-							<TextBlock
-								Text="Enable Sound"
-								FontSize="16"
-								Foreground="White"
-								VerticalAlignment="Center" />
-						</StackPanel>
 					</StackPanel>
 				</Border>
 				<Button
