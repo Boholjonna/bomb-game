@@ -222,6 +222,90 @@
 			</Setter>
 		</Style>
 		
+		<!-- Game Over Button Style -->
+		<Style x:Key="GameOverButtonStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FF333333"/>
+			<Setter Property="BorderBrush" Value="#FF666666"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="10">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#16cc00"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FFAAAAAA"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!-- Try Again Button Style -->
+		<Style x:Key="TryAgainButtonStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FF333333"/>
+			<Setter Property="BorderBrush" Value="#FF666666"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="10">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#16cc00"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FFAAAAAA"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<!-- Back to Menu Button Style -->
+		<Style x:Key="BackToMenuButtonStyle" TargetType="Button">
+			<Setter Property="Background" Value="#FF333333"/>
+			<Setter Property="BorderBrush" Value="#FF666666"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontSize" Value="16"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border x:Name="border" 
+								Background="{TemplateBinding Background}" 
+								BorderBrush="{TemplateBinding BorderBrush}" 
+								BorderThickness="{TemplateBinding BorderThickness}"
+								CornerRadius="10">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="True">
+								<Setter TargetName="border" Property="Background" Value="#f30000"/>
+								<Setter TargetName="border" Property="BorderBrush" Value="#FFAAAAAA"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
 		<!-- Back Button Style -->
 		<Style x:Key="BackButtonStyle" TargetType="Button">
 			<Setter Property="Background" Value="#FF333333"/>
@@ -394,59 +478,162 @@
 					   HorizontalAlignment="Center"
 					   VerticalAlignment="Center"
 					   Margin="0,0,0,30" />
-				
-				<!-- Wires -->
+				<!-- Animated Circular Bomb -->
 				<Grid
-					Width="600"
-					Height="300"
-					Margin="0,0,0,30">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition
-							Width="*" />
-						<ColumnDefinition
-							Width="*" />
-						<ColumnDefinition
-							Width="*" />
-						<ColumnDefinition
-							Width="*" />
-						<ColumnDefinition
-							Width="*" />
-					</Grid.ColumnDefinitions>
+					Width="400"
+					Height="400"
+					Margin="0,0,0,30"
+					HorizontalAlignment="Center"
+					RenderTransformOrigin="0.5,0.5">
+					<Grid.RenderTransform>
+						<TransformGroup>
+							<RotateTransform x:Name="BombRotation" Angle="0" />
+						</TransformGroup>
+					</Grid.RenderTransform>
+					<Grid.Triggers>
+						<EventTrigger RoutedEvent="Loaded">
+							<BeginStoryboard>
+								<Storyboard
+									RepeatBehavior="Forever">
+									<DoubleAnimation
+										Storyboard.TargetName="BombRotation"
+										Storyboard.TargetProperty="Angle"
+										From="0"
+										To="360"
+										Duration="0:0:10" />
+								</Storyboard>
+							</BeginStoryboard>
+						</EventTrigger>
+					</Grid.Triggers>
+					<!-- Outer Bomb Circle -->
+					<Ellipse
+						x:Name="BombCircle"
+						Width="400"
+						Height="400"
+						Fill="#2C2C2C"
+						Stroke="#FF0000"
+						StrokeThickness="8"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center">
+						<Ellipse.Effect>
+							<DropShadowEffect
+								BlurRadius="15"
+								ShadowDepth="5"
+								Color="#FF0000"
+								Opacity="0.8" />
+						</Ellipse.Effect>
+						<Ellipse.Triggers>
+							<EventTrigger RoutedEvent="Loaded">
+								<BeginStoryboard>
+									<Storyboard
+										RepeatBehavior="Forever"
+										AutoReverse="True">
+										<ColorAnimation
+											Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)"
+											From="#FF0000"
+											To="#FF6666"
+											Duration="0:0:1" />
+									</Storyboard>
+								</BeginStoryboard>
+							</EventTrigger>
+						</Ellipse.Triggers>
+					</Ellipse>
+					<!-- Inner Bomb Circle -->
+					<Ellipse
+						Width="350"
+						Height="350"
+						Fill="#1A1A1A"
+						Stroke="#444444"
+						StrokeThickness="4"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center" />
+					<!-- Center Display -->
+					<StackPanel
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center">
+					</StackPanel>
+					<!-- Wire Circles positioned around the bomb -->
 					<Button
 						x:Name="Wire1"
-						Grid.Column="0"
-						Content="RED"
+						Width="60"
+						Height="60"
 						Click="Wire_Click"
-						Style="{StaticResource RedWireStyle}" />
+						Style="{StaticResource RedWireStyle}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Top"
+						Margin="0,40,0,0"
+						Background="Transparent"
+						BorderThickness="0"
+						Padding="0">
+						<Ellipse
+							Width="60"
+							Height="60"
+							Fill="#CC0000"
+							Stroke="#FF6666"
+							StrokeThickness="3" />
+					</Button>
 					<Button
 						x:Name="Wire2"
-						Grid.Column="1"
-						Content="GREEN"
+						Width="60"
+						Height="60"
 						Click="Wire_Click"
-						Style="{StaticResource GreenWireStyle}" />
+						Style="{StaticResource GreenWireStyle}"
+						HorizontalAlignment="Right"
+						VerticalAlignment="Center"
+						Margin="0,0,40,0"
+						Background="Transparent"
+						BorderThickness="0"
+						Padding="0">
+						<Ellipse
+							Width="60"
+							Height="60"
+							Fill="#00CC00"
+							Stroke="#66FF66"
+							StrokeThickness="3" />
+					</Button>
 					<Button
 						x:Name="Wire3"
-						Grid.Column="2"
-						Content="BLUE"
+						Width="60"
+						Height="60"
 						Click="Wire_Click"
-						Style="{StaticResource BlueWireStyle}" />
+						Style="{StaticResource BlueWireStyle}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Bottom"
+						Margin="0,0,0,40"
+						Background="Transparent"
+						BorderThickness="0"
+						Padding="0">
+						<Ellipse
+							Width="60"
+							Height="60"
+							Fill="#0066CC"
+							Stroke="#6699FF"
+							StrokeThickness="3" />
+					</Button>
 					<Button
 						x:Name="Wire4"
-						Grid.Column="3"
-						Content="YELLOW"
+						Width="60"
+						Height="60"
 						Click="Wire_Click"
-						Style="{StaticResource YellowWireStyle}" />
-					<Button
-						x:Name="Wire5"
-						Grid.Column="4"
-						Content="PURPLE"
-						Click="Wire_Click"
-						Style="{StaticResource PurpleWireStyle}" />
+						Style="{StaticResource YellowWireStyle}"
+						HorizontalAlignment="Left"
+						VerticalAlignment="Center"
+						Margin="40,0,0,0"
+						Background="Transparent"
+						BorderThickness="0"
+						Padding="0">
+						<Ellipse
+							Width="60"
+							Height="60"
+							Fill="#CCCC00"
+							Stroke="#FFFF66"
+							StrokeThickness="3" />
+					</Button>
 				</Grid>
 				<!-- Game Over Buttons (Initially Hidden) -->
 				<StackPanel
 					x:Name="GameOverButtons"
-					Orientation="Horizontal"
+					Orientation="Vertical"
 					HorizontalAlignment="Center"
 					Visibility="Collapsed"
 					Margin="0,20,0,0">
@@ -455,35 +642,28 @@
 						Content="TRY AGAIN"
 						Width="150"
 						Height="50"
-						Background="#4CAF50"
+						Background="#006400"
+						BorderBrush="#90EE90"
 						Foreground="White"
 						FontSize="16"
 						FontWeight="Bold"
-						Margin="0,0,10,0"
+						Margin="0,0,0,10"
+						Style="{StaticResource TryAgainButtonStyle}"
 						Click="TryAgain_Click" />
 					<Button
 						x:Name="BackToMenuFromGameButton"
 						Content="BACK TO MENU"
 						Width="150"
 						Height="50"
-						Background="#FF5722"
+						Background="#b10000"
+						BorderBrush="#ff9999"
 						Foreground="White"
 						FontSize="16"
 						FontWeight="Bold"
-						Margin="10,0,0,0"
-						Click="BackToMenuFromGame_Click" />
+						Margin="0,0,0,0"
+						Style="{StaticResource BackToMenuButtonStyle}"
+						Click="BackToMenu_Click" />
 				</StackPanel>
-				<Button
-					x:Name="BackToMenuFromPlay"
-					Content="BACK TO MENU"
-					Width="200"
-					Height="50"
-					Background="#FF333333"
-					Foreground="White"
-					FontSize="16"
-					FontWeight="Bold"
-					Click="BackToMenu_Click"
-				Style="{StaticResource BackButtonStyle}" />
 			</StackPanel>
 		</Grid>
 		<!-- Settings Panel -->
@@ -620,6 +800,16 @@
 							Foreground="White"
 							Margin="0,0,0,5" />
 						<TextBlock
+							Text="• Time limits: Easy (20s), Medium (15s), Hard (10s)"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Score starts at 0 and increases with speed and remaining attempts"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
 							Text="• Click on any wire to cut it"
 							FontSize="16"
 							Foreground="White"
@@ -630,18 +820,33 @@
 							Foreground="White"
 							Margin="0,0,0,5" />
 						<TextBlock
-							Text="• Cut the wrong wire and the bomb explodes!"
+							Text="• Cut the wrong wire and the bomb wire moves to a new position!"
 							FontSize="16"
 							Foreground="White"
 							Margin="0,0,0,20" />
 						<TextBlock
-							Text="🏆 WINNING"
+							Text="🏆 SCORING"
 							FontSize="24"
 							FontWeight="Bold"
 							Foreground="White"
 							Margin="0,0,0,10" />
 						<TextBlock
-							Text="Find the correct wire before running out of attempts to win!"
+							Text="• Base Score: 100 points"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Time Bonus: +2 points per second remaining"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Attempt Bonus: +10 points per attempt remaining"
+							FontSize="16"
+							Foreground="White"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Faster completion = Higher score!"
 							FontSize="16"
 							Foreground="White"
 							TextWrapping="Wrap" />
@@ -705,7 +910,7 @@
 							HorizontalAlignment="Center"
 							Margin="0,0,0,20" />
 						<TextBlock
-							Text="A thrilling game of luck and nerve where every decision counts!"
+							Text="A thrilling game of luck, speed, and nerve where every second counts!"
 							FontSize="16"
 							Foreground="White"
 							TextWrapping="Wrap"
@@ -719,29 +924,41 @@
 							HorizontalAlignment="Center"
 							Margin="0,0,0,10" />
 						<TextBlock
-							Text="• Random bomb wire placement"
+							Text="• Dynamic scoring system based on speed and accuracy"
 							FontSize="14"
 							Foreground="White"
 							HorizontalAlignment="Center"
 							Margin="0,0,0,5" />
 						<TextBlock
-							Text="• 5 trial attempts per game"
+							Text="• Difficulty-based time limits (Easy: 20s, Medium: 15s, Hard: 10s)"
 							FontSize="14"
 							Foreground="White"
 							HorizontalAlignment="Center"
 							Margin="0,0,0,5" />
 						<TextBlock
-							Text="• Modern UI design"
+							Text="• Real-time countdown timer with color-coded warnings"
 							FontSize="14"
 							Foreground="White"
 							HorizontalAlignment="Center"
 							Margin="0,0,0,5" />
 						<TextBlock
-							Text="• Multiple difficulty settings"
+							Text="• 5 attempts per game with moving bomb wire on wrong cuts"
 							FontSize="14"
 							Foreground="White"
 							HorizontalAlignment="Center"
-							Margin="0,0,0,20" />
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Interactive win/lose screens with replay options"
+							FontSize="14"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							Margin="0,0,0,5" />
+						<TextBlock
+							Text="• Modern gaming UI with bold 25px fonts"
+							FontSize="14"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							Margin="0,0,0,5" />
 						<TextBlock
 							Text="© 2026 Jonna Bohol. All rights reserved."
 							FontSize="12"

@@ -78,7 +78,6 @@ namespace bomb_game
 			else if (clickedWire == Wire2) wireIndex = 1;
 			else if (clickedWire == Wire3) wireIndex = 2;
 			else if (clickedWire == Wire4) wireIndex = 3;
-			else if (clickedWire == Wire5) wireIndex = 4;
 			
 			if (wireIndex == -1) return;
 			
@@ -89,7 +88,9 @@ namespace bomb_game
 			{
 				// Correct wire - bomb defused!
 				gameTimer.Stop();
-				CalculateScore();
+				// Increment trial count for the correct wire click
+				score++;
+				AttemptsText.Text = "Trials: " + score;
 				ShowWinScreen();
 				gameActive = false;
 				DisableAllWires();
@@ -97,15 +98,16 @@ namespace bomb_game
 			}
 			else
 			{
-				// Wrong wire - reduce attempts and change bomb wire
+				// Wrong wire - reduce attempts and increase trial count
 				attemptsRemaining--;
-				AttemptsText.Text = "Score: " + attemptsRemaining;
+				score++; // Increment trial count
+				AttemptsText.Text = "Trials: " + score;
 				
 				// Change bomb wire to a new random position (different from current)
 				int newBombWire;
 				do
 				{
-					newBombWire = random.Next(0, 5);
+					newBombWire = random.Next(0, 4);
 				} while (newBombWire == bombWireIndex);
 				
 				bombWireIndex = newBombWire;
@@ -259,11 +261,8 @@ namespace bomb_game
 		
 		private void CalculateScore()
 		{
-			TimeSpan timeTaken = DateTime.Now - gameStartTime;
-			int baseScore = 100;
-			int timeBonus = Math.Max(0, (timeLimit - (int)timeTaken.TotalSeconds) * 2);
-			int attemptBonus = attemptsRemaining * 10;
-			score = baseScore + timeBonus + attemptBonus;
+			// Score is now based on number of trials (wire clicks)
+			score = 5 - attemptsRemaining + 1; // Current trial number
 		}
 		
 		private void ShowWinScreen()
@@ -271,11 +270,11 @@ namespace bomb_game
 			StatusText.Text = "🎉 CONGRATULATIONS! You have good luck! 🎉";
 			StatusText.Foreground = new SolidColorBrush(Colors.Gold);
 			
-			// Show score after a delay
+			// Just show congratulations message (no trial count)
 			DispatcherTimer scoreTimer = new DispatcherTimer();
 			scoreTimer.Interval = TimeSpan.FromSeconds(2);
 			scoreTimer.Tick += (s, e) => {
-				StatusText.Text = string.Format("🏆 FINAL SCORE: {0} 🏆", score);
+				StatusText.Text = "� CONGRATULATIONS! You have good luck! �";
 				scoreTimer.Stop();
 				ShowGameButtons();
 			};
@@ -332,8 +331,8 @@ namespace bomb_game
 				StatusText.Foreground = new SolidColorBrush(Colors.Lime);
 			}
 			
-			// Also update score display
-			AttemptsText.Text = string.Format("Score: {0}", score);
+			// Update trial count display
+			AttemptsText.Text = string.Format("Trials: {0}", score);
 		}
 		
 		private int GetTimeLimitFromDifficulty()
@@ -359,14 +358,16 @@ namespace bomb_game
 			// Reset game state
 			attemptsRemaining = 5;
 			gameActive = true;
-			bombWireIndex = random.Next(0, 5); // Random wire 0-4
+			bombWireIndex = random.Next(0, 4); // Random wire 0-3
 			timeLimit = GetTimeLimitFromDifficulty();
 			timeRemaining = timeLimit;
-			score = 0;
+			score = 0; // Start with 0 trials
 			gameStartTime = DateTime.Now;
 			
 			// Reset UI
-			AttemptsText.Text = "Score: " + attemptsRemaining;
+			AttemptsText.Text = "Trials: 0";
+			StatusText.Text = "Choose a wire to cut...";
+			StatusText.Foreground = new SolidColorBrush(Colors.Lime);
 			UpdateTimerDisplay();
 			
 			// Enable and reset all wires
@@ -386,8 +387,6 @@ namespace bomb_game
 			Wire3.Opacity = 1.0;
 			Wire4.IsEnabled = true;
 			Wire4.Opacity = 1.0;
-			Wire5.IsEnabled = true;
-			Wire5.Opacity = 1.0;
 		}
 		
 		private void DisableAllWires()
@@ -396,7 +395,6 @@ namespace bomb_game
 			Wire2.IsEnabled = false;
 			Wire3.IsEnabled = false;
 			Wire4.IsEnabled = false;
-			Wire5.IsEnabled = false;
 		}
 		
 		private void RevealBombWire()
@@ -418,10 +416,6 @@ namespace bomb_game
 				case 3:
 					Wire4.BorderBrush = new SolidColorBrush(Colors.Red);
 					Wire4.BorderThickness = new Thickness(5);
-					break;
-				case 4:
-					Wire5.BorderBrush = new SolidColorBrush(Colors.Red);
-					Wire5.BorderThickness = new Thickness(5);
 					break;
 			}
 		}
